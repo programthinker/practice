@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="stream" />
+        <module name="redis" />
+        <module name="iText" />
+        <module name="messageQueue" />
+        <module name="path" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="8" />
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="iText" options="-parameters" />
+      <module name="messageQueue" options="-parameters" />
+      <module name="path" options="-parameters" />
+      <module name="redis" options="-parameters" />
+      <module name="stream" options="-parameters" />
+    </option>
+  </component>
+</project>
