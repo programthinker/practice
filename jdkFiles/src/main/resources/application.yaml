@@ -1,0 +1,8 @@
+server:
+  port: 8080
+  resource:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/
+
+fileLocation:
+  location1: /Users/zhanggeyang/IdeaProjects/practice/jdkFiles/target/classes/fileStorage/
+  location2: file:/Users/zhanggeyang/IdeaProjects/practice/jdkFiles/target/jdkfiles-0.0.1-SNAPSHOT.jar!/BOOT-INF/classes!/fileStorage/

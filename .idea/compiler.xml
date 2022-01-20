@@ -6,18 +6,22 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="stream" />
         <module name="redis" />
-        <module name="iText" />
+        <module name="jdkFiles" />
+        <module name="elasticSearch" />
         <module name="messageQueue" />
         <module name="path" />
+        <module name="stream" />
+        <module name="iText" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8" />
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="elasticSearch" options="-parameters" />
       <module name="iText" options="-parameters" />
+      <module name="jdkFiles" options="-parameters" />
       <module name="messageQueue" options="-parameters" />
       <module name="path" options="-parameters" />
       <module name="redis" options="-parameters" />

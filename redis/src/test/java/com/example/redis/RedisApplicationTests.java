@@ -96,13 +96,13 @@ class RedisApplicationTests {
     public void putHashObject() {
         //使用redis的hash类型存储对象
         User user = new User("lisi", "18");
-        redisTemplate.opsForHash().put(object, object, user);
+        redisTemplate.opsForHash().put(object, "user1", user);
     }
 
     @Test
     public void getHashObject() {
         //根据rediskey获取对象类型的value
-        Object o = redisTemplate.opsForHash().get(object, object);
+        Object o = redisTemplate.opsForHash().get(object, "user1");
         System.out.println(o);
     }
 

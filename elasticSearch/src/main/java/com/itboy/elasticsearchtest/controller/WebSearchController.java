@@ -15,6 +15,7 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -96,8 +97,8 @@ public class WebSearchController {
         SearchRequest source = searchRequest.source(searchSourceBuilder);
         try {
             SearchResponse searchResponse = restHighLevelClient.search(source, RequestOptions.DEFAULT);
-            long totalHits = searchResponse.getHits().getTotalHits().value;
-            System.out.println(searchResponse.getHits().getTotalHits().value+" 命中 ");
+            long totalHits = searchResponse.getHits().getTotalHits();
+            System.out.println(searchResponse.getHits().getTotalHits()+" 命中 ");
             ArrayList<Object> arrayList = new ArrayList<>();
             for (SearchHit hit : searchResponse.getHits()) {
                 System.out.println(hit.getSourceAsMap());
