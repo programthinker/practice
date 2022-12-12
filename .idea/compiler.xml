@@ -9,6 +9,8 @@
         <module name="redis" />
         <module name="jdkFiles" />
         <module name="elasticSearch" />
+        <module name="time-test" />
+        <module name="json" />
         <module name="messageQueue" />
         <module name="path" />
         <module name="stream" />
@@ -22,10 +24,12 @@
       <module name="elasticSearch" options="-parameters" />
       <module name="iText" options="-parameters" />
       <module name="jdkFiles" options="-parameters" />
+      <module name="json" options="-parameters" />
       <module name="messageQueue" options="-parameters" />
       <module name="path" options="-parameters" />
       <module name="redis" options="-parameters" />
       <module name="stream" options="-parameters" />
+      <module name="time-test" options="-parameters" />
     </option>
   </component>
 </project>

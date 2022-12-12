@@ -4,6 +4,7 @@ import com.itboy.elasticsearchtest.entity.PageResponseEntity;
 import com.itboy.elasticsearchtest.entity.RequestEntity;
 import com.itboy.elasticsearchtest.entity.Result;
 import org.apache.http.HttpHost;
+import org.apache.lucene.search.TotalHits;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
@@ -97,7 +98,7 @@ public class WebSearchController {
         SearchRequest source = searchRequest.source(searchSourceBuilder);
         try {
             SearchResponse searchResponse = restHighLevelClient.search(source, RequestOptions.DEFAULT);
-            long totalHits = searchResponse.getHits().getTotalHits();
+            TotalHits totalHits = searchResponse.getHits().getTotalHits();
             System.out.println(searchResponse.getHits().getTotalHits()+" 命中 ");
             ArrayList<Object> arrayList = new ArrayList<>();
             for (SearchHit hit : searchResponse.getHits()) {
@@ -105,7 +106,7 @@ public class WebSearchController {
                 Map<String, Object> sourceAsMap = hit.getSourceAsMap();
                 arrayList.add(sourceAsMap);
             }
-            return new PageResponseEntity(totalHits,arrayList);
+            return new PageResponseEntity(totalHits.value,arrayList);
         } catch (IOException e) {
             e.printStackTrace();
         }

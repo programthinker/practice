@@ -1,5 +1,7 @@
 import org.springframework.boot.system.ApplicationHome;
 
+import java.util.Objects;
+
 /**
  * @ProjectName practice
  * @PackageName PACKAGE_NAME
@@ -12,7 +14,15 @@ import org.springframework.boot.system.ApplicationHome;
 
 public class PathTest {
     public static void main(String[] args) {
-        ApplicationHome applicationHome = new ApplicationHome(PathTest.class);
-        System.out.println(applicationHome.getDir());
+//        //子转父
+//        Father father = new Sun();
+//        father.eat();
+//        //父转子
+//        Sun sun = (Sun) new Father();
+//        sun.eat();
+        System.out.println(Objects.isNull(" "));
+        System.out.println(Objects.equals("", ""));
+        System.out.println(Objects.deepEquals("aa", "aa"));
+        System.out.println(Objects.hashCode(""));
     }
 }
