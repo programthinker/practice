@@ -10,6 +10,8 @@
         <module>redis</module>
         <module>messageQueue</module>
         <module>elasticSearch</module>
+        <module>threadPool</module>
+        <module>json</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -52,6 +54,11 @@
             <version>2.13.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.14</version>
+        </dependency>
 
 
     </dependencies>

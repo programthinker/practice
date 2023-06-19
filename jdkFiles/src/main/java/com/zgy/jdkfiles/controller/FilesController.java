@@ -2,6 +2,8 @@ package com.zgy.jdkfiles.controller;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -55,7 +57,6 @@ public class FilesController {
 
     @GetMapping(value = "/download")
     public void download(@RequestParam String filePath, HttpServletResponse response) throws Exception {
-
         // path是指想要下载的文件的路径
         File file = new File(filePath);
         // 将文件写入输入流
@@ -63,8 +64,6 @@ public class FilesController {
         InputStream fis = new BufferedInputStream(fileInputStream);
         byte[] buffer = new byte[fis.available()];
         fis.read(buffer);
-
-
         // 清空response
         response.reset();
         // 设置response的Header
@@ -73,10 +72,13 @@ public class FilesController {
         //attachment表示以附件方式下载   inline表示在线打开   "Content-Disposition: inline; filename=文件名.mp3"
         // filename表示文件的默认名称，因为网络传输只支持URL编码的相关支付，因此需要将文件名URL编码后进行传输,前端收到后需要反编码才能获取到真正的名称
         response.addHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(file.getName(), StandardCharsets.UTF_8.toString()));
+        response.addHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + URLEncoder.encode(file.getName(), StandardCharsets.UTF_8.toString()));
         // 告知浏览器文件的大小
         response.addHeader("Content-Length", String.valueOf(file.length()));
+        response.addHeader(HttpHeaders.CONTENT_LENGTH, String.valueOf(file.length()));
         OutputStream outputStream = new BufferedOutputStream(response.getOutputStream());
         response.setContentType("application/octet-stream");
+        response.setContentType(MediaType.APPLICATION_OCTET_STREAM_VALUE);
         outputStream.write(buffer);
         outputStream.flush();
         IOUtils.closeQuietly(fileInputStream);
@@ -87,10 +89,10 @@ public class FilesController {
     }
 
     @GetMapping(value = "/openOnline")
-    public void openOnline(@RequestParam String filePath, HttpServletResponse response) throws Exception {
+    public void openOnline( HttpServletResponse response) throws Exception {
 
         // path是指想要下载的文件的路径
-        File file = new File(filePath);
+        File file = new File("/Users/zhanggeyang/Pictures/证件/证件照.jpeg");
         // 将文件写入输入流
         FileInputStream fileInputStream = new FileInputStream(file);
         InputStream fis = new BufferedInputStream(fileInputStream);
@@ -101,10 +103,7 @@ public class FilesController {
         response.reset();
         // 设置response的Header
         response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
-
         OutputStream outputStream = new BufferedOutputStream(response.getOutputStream());
-
-
         URL u = new URL("file:///" + file);
         response.setContentType(u.openConnection().getContentType());
         response.setHeader("Content-Disposition", "inline; filename=" + URLEncoder.encode(file.getName(), StandardCharsets.UTF_8.toString()));

@@ -34,6 +34,7 @@ public class TestController {
         user.setBirthday(LocalDateTime.now());
         System.out.println(user);
         String string = objectMapper.writeValueAsString(user);
+        
 
         return string;
     }

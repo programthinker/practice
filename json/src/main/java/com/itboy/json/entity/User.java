@@ -1,9 +1,11 @@
 package com.itboy.json.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -16,16 +18,21 @@ import java.util.Objects;
  * @Version 1.0
  */
 
+@Data
 public class User implements Serializable {
     private String name;
     private String address;
-    @JsonFormat(pattern = "yyyy:MM:dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime birthday;
+    private Home home;
+    private List<String> codes;
 
-    public User(String name, String address, LocalDateTime birthday) {
+    public User(String name, String address, LocalDateTime birthday,Home home,List<String> codes) {
         this.name = name;
         this.address = address;
         this.birthday = birthday;
+        this.home = home;
+        this.codes = codes;
     }
 
     public User() {
@@ -37,6 +44,7 @@ public class User implements Serializable {
                 "name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", birthday=" + birthday +
+                ", home=" + home +
                 '}';
     }
 
@@ -45,37 +53,16 @@ public class User implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(name, user.name) &&
-                Objects.equals(address, user.address) &&
-                Objects.equals(birthday, user.birthday);
+        return name.equals(user.name) &&
+                address.equals(user.address) &&
+                birthday.equals(user.birthday) &&
+                home.equals(user.home);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, address, birthday);
+        return Objects.hash(name, address, birthday, home);
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public LocalDateTime getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(LocalDateTime birthday) {
-        this.birthday = birthday;
-    }
 }

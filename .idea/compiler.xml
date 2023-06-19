@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -11,6 +12,7 @@
         <module name="elasticSearch" />
         <module name="time-test" />
         <module name="json" />
+        <module name="threadPool" />
         <module name="messageQueue" />
         <module name="path" />
         <module name="stream" />
@@ -29,6 +31,7 @@
       <module name="path" options="-parameters" />
       <module name="redis" options="-parameters" />
       <module name="stream" options="-parameters" />
+      <module name="threadPool" options="-parameters" />
       <module name="time-test" options="-parameters" />
     </option>
   </component>

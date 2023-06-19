@@ -24,6 +24,7 @@ public class DocInsertTest {
     public static void main(String[] args) throws Exception{
         RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(new HttpHost("127.0.0.1", 9200)));
 
+
         IndexRequest indexRequest = new IndexRequest();
         indexRequest.index("user").id("1004");
 
