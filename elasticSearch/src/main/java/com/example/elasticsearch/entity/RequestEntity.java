@@ -1,4 +1,4 @@
-package com.itboy.elasticsearchtest.entity;
+package com.example.elasticsearch.entity;
 
 /**
  * @ProjectName elasticsearchtest
@@ -21,7 +21,7 @@ public class RequestEntity {
     private int pageSize;
     private String sortOrder;
 
-    public RequestEntity(String name, String sex, String address, int age, String max, String min, int currentPage, int pageSize,String sortOrder) {
+    public RequestEntity(String name, String sex, String address, int age, String max, String min, int currentPage, int pageSize, String sortOrder) {
         this.name = name;
         this.sex = sex;
         this.address = address;

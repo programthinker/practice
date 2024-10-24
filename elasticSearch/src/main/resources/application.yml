@@ -3,3 +3,7 @@ server:
 spring:
   application:
     name: es
+
+  elasticsearch:
+    username: elastic
+    password: ftYu1eWwKIRwLjOj+Hd+

@@ -1,8 +1,8 @@
-package com.itboy.elasticsearchtest.controller;
+package com.example.elasticsearch.controller;
 
-import com.itboy.elasticsearchtest.entity.PageResponseEntity;
-import com.itboy.elasticsearchtest.entity.RequestEntity;
-import com.itboy.elasticsearchtest.entity.Result;
+import com.example.elasticsearch.entity.PageResponseEntity;
+import com.example.elasticsearch.entity.RequestEntity;
+import com.example.elasticsearch.entity.Result;
 import org.apache.http.HttpHost;
 import org.apache.lucene.search.TotalHits;
 import org.elasticsearch.action.search.SearchRequest;
@@ -47,6 +47,7 @@ public class WebSearchController {
 
     @Autowired
     private HighlightBuilder highlightBuilder;
+
     /*
      * @Author: zhanggeyang
      * @Description:
@@ -99,14 +100,14 @@ public class WebSearchController {
         try {
             SearchResponse searchResponse = restHighLevelClient.search(source, RequestOptions.DEFAULT);
             TotalHits totalHits = searchResponse.getHits().getTotalHits();
-            System.out.println(searchResponse.getHits().getTotalHits()+" 命中 ");
+            System.out.println(searchResponse.getHits().getTotalHits() + " 命中 ");
             ArrayList<Object> arrayList = new ArrayList<>();
             for (SearchHit hit : searchResponse.getHits()) {
                 System.out.println(hit.getSourceAsMap());
                 Map<String, Object> sourceAsMap = hit.getSourceAsMap();
                 arrayList.add(sourceAsMap);
             }
-            return new PageResponseEntity(totalHits.value,arrayList);
+            return new PageResponseEntity(totalHits.value, arrayList);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -128,12 +129,12 @@ public class WebSearchController {
                 Map<String, Object> sourceAsMap = hit.getSourceAsMap();
                 arrayList.add(sourceAsMap);
             }
-            return new Result(true,"success",arrayList);
+            return new Result(true, "success", arrayList);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return new Result(false,"failure");
+        return new Result(false, "failure");
     }
 
     @GetMapping(value = "/index1")
@@ -151,12 +152,12 @@ public class WebSearchController {
                 Map<String, Object> sourceAsMap = hit.getSourceAsMap();
                 arrayList.add(sourceAsMap);
             }
-            return new Result(true,"success",arrayList);
+            return new Result(true, "success", arrayList);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return new Result(false,"failure");
+        return new Result(false, "failure");
     }
 
 }

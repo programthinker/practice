@@ -7,25 +7,29 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="redis" />
-        <module name="jdkFiles" />
-        <module name="elasticSearch" />
-        <module name="time-test" />
-        <module name="json" />
-        <module name="threadPool" />
-        <module name="messageQueue" />
         <module name="path" />
+        <module name="elasticSearch" />
         <module name="stream" />
+        <module name="jdkfiles" />
+        <module name="jdkFiles" />
+        <module name="json" />
+        <module name="messageQueue" />
         <module name="iText" />
+        <module name="threadPool" />
+        <module name="time-test" />
+        <module name="redis" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8" />
+    <bytecodeTargetLevel target="8">
+      <module name="demo" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="elasticSearch" options="-parameters" />
       <module name="iText" options="-parameters" />
       <module name="jdkFiles" options="-parameters" />
+      <module name="jdkfiles" options="-parameters" />
       <module name="json" options="-parameters" />
       <module name="messageQueue" options="-parameters" />
       <module name="path" options="-parameters" />

@@ -1,4 +1,4 @@
-package com.itboy.elasticsearchtest.entity;
+package com.example.elasticsearch.entity;
 
 import java.io.Serializable;
 

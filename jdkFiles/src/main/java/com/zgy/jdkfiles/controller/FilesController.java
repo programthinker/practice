@@ -1,11 +1,14 @@
 package com.zgy.jdkfiles.controller;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.tomcat.jni.FileInfo;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
+import org.springframework.core.io.Resource;
+import org.springframework.http.*;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,6 +40,8 @@ public class FilesController {
     @Value("${fileLocation.location2}")
     private String location2;
 
+    private static String path = "/Users/zhanggeyang/Downloads/MIAA-465 與姪女們溫泉旅行一起在男湯入浴中、被妹子雙重臀部夾擊10發惡作劇射精的我 松本一香 工藤拉拉 - Jable.TV | 免費高清AV在線看 | J片 AV看到飽.mp4";
+    ;
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public String downLoad(@RequestParam(value = "file") MultipartFile file, HttpServletRequest request, HttpServletResponse response) {
@@ -56,9 +61,9 @@ public class FilesController {
     }
 
     @GetMapping(value = "/download")
-    public void download(@RequestParam String filePath, HttpServletResponse response) throws Exception {
+    public void download(HttpServletResponse response) throws Exception {
         // path是指想要下载的文件的路径
-        File file = new File(filePath);
+        File file = new File(path);
         // 将文件写入输入流
         FileInputStream fileInputStream = new FileInputStream(file);
         InputStream fis = new BufferedInputStream(fileInputStream);
@@ -89,7 +94,7 @@ public class FilesController {
     }
 
     @GetMapping(value = "/openOnline")
-    public void openOnline( HttpServletResponse response) throws Exception {
+    public void openOnline(HttpServletResponse response) throws Exception {
 
         // path是指想要下载的文件的路径
         File file = new File("/Users/zhanggeyang/Pictures/证件/证件照.jpeg");
@@ -117,4 +122,34 @@ public class FilesController {
 
 
     }
+
+    @GetMapping(value = "downloada")
+    public ResponseEntity<byte[]> d() throws IOException {
+        File file = new File(path);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentDisposition(ContentDisposition.attachment().filename(file.getName()).build());
+        httpHeaders.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        return ResponseEntity.ok().headers(httpHeaders).contentLength(file.length()).body(Files.readAllBytes(Paths.get(file.toURI())));
+    }
+
+    @GetMapping("downloadstream")
+    public StreamingResponseBody downloadFile(HttpServletResponse response) throws FileNotFoundException {
+
+        File file = new File(path);
+        FileInputStream fileInputStream = new FileInputStream(file);
+        response.setContentType(MediaType.APPLICATION_OCTET_STREAM_VALUE);
+        response.setContentLengthLong(file.length());
+        response.setHeader(
+                HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\"" + file.getName() + "\"");
+        return outputStream -> {
+            StreamUtils.copy(fileInputStream,outputStream);
+            int bytesRead;
+            byte[] buffer = new byte[8096];
+            while ((bytesRead = fileInputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
+            }
+        };
+//        return ResponseEntity.ok().headers(httpHeaders).contentLength(file.length()).body(responseBody);
+    }
+
 }

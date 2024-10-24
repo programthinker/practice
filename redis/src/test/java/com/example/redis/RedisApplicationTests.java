@@ -37,6 +37,19 @@ class RedisApplicationTests {
     void contextLoads() {
     }
 
+    @Test
+    public void putObject(){
+        User user = new User();
+        user.setAge("19");
+        user.setName("zhangsi");
+        redisTemplate.opsForValue().set("user",user);
+    }
+
+    @Test
+    public void getObject(){
+        User user = (User) redisTemplate.opsForValue().get("user");
+        System.out.println(user);
+    }
     /*
      * @Author: zhanggeyang
      * @Description:  新增元素

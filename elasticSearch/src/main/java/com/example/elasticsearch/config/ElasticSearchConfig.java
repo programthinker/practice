@@ -1,4 +1,4 @@
-package com.itboy.elasticsearchtest.config;
+package com.example.elasticsearch.config;
 
 import org.apache.http.HttpHost;
 import org.elasticsearch.action.search.SearchRequest;
